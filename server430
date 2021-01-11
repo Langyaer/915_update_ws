@@ -1,0 +1,40 @@
+#!/bin/bash
+cd /home/sky1/work/430_ws
+
+launchrunning=$(ps -ef | grep "launch430.sh" | grep -v "grep")
+rslidar_pointcloud_running=$(ps -ef | grep "roslaunch rslidar_pointcloud two_lidar.launch" |grep -v "grep")
+eucli_pointcloud=$(ps -ef | grep "roslaunch euclidean_cluster euclidean_cluster.launch" |grep -v "grep") 
+
+
+if [ $1 = "start" ]
+then
+echo "do start"
+	if [ "$launchrunning" ];then
+		kill -9 `ps -ef | grep "launch430.sh" | grep -v grep | awk '{print $2}'`
+	fi
+	
+	if [ "$rslidar_pointcloud_running" ];then
+		kill -9 `ps -ef | grep rslidar_pointcloud | grep -v grep | awk '{print $2}'`
+	fi
+	
+	if [ "$eucli_pointcloud" ];then
+		kill -9 `ps -ef | grep "euclidean_cluster" | grep -v grep | awk '{print $2}'`
+	fi
+	nohup ./launch430.sh > /dev/null 2>&1 &
+
+elif [ $1 = "stop" ]
+then
+echo "do stop"
+	if [ "$launchrunning" ];then
+		kill -9 `ps -ef | grep "launch430.sh" | grep -v grep | awk '{print $2}'`
+	fi
+	if [ "$rslidar_pointcloud_running" ];then
+		kill -9 `ps -ef | grep "rslidar_pointcloud" | grep -v grep | awk '{print $2}'`
+	fi
+
+	if [ "$eucli_pointcloud" ];then
+		kill -9 `ps -ef | grep "euclidean_cluster" | grep -v grep | awk '{print $2}'`
+	fi
+else
+  echo "Please make sure the positon variable is start or stop."
+fi

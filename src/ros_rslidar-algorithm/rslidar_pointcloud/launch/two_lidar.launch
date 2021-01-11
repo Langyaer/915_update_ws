@@ -1,0 +1,65 @@
+<launch>
+<group ns="ns1">
+  <node  name="rslidar_node" pkg="rslidar_driver" type="rslidar_node" output="screen" >
+    <param name="model" value="RSBPEARL"/>
+    <!--param name="pcap" value="/home/tony-sti/lidar_data/lm75-170616-roadtest.pcap"/ -->
+    <param name="device_ip" value="192.168.1.54"/>
+    <param name="msop_port" value="6699"/>
+    <param name="difop_port" value="7788"/>
+    
+
+  </node>
+    <param name="x_offset" value="0.24"/>
+    <param name="y_offset" value="-1.8"/>1
+    <param name="z_offset" value="2.92"/>
+    
+    <param name="roll_offset" value="5.21"/>
+    <param name="pitch_offset" value="0.72"/>
+    <param name="yaw_offset" value="3.5"/>
+
+    <param name="roll_dy_offset" value="0"/>
+    <param name="pitch_dy_offset" value="0"/>
+    <param name="yaw_dy_offset" value="0"/>
+
+  <node  name="cloud_node" pkg="rslidar_pointcloud" type="cloud_node" output="screen" >
+    <param name="model" value="RSBPEARL"/>
+    <param name="angle_path" value="$(find rslidar_pointcloud)/data/lidar1/angle.csv" />
+    <param name="channel_path" value="$(find rslidar_pointcloud)/data/lidar1/ChannelNum.csv" />
+
+
+  </node>
+</group>
+
+
+
+<group ns="ns2">
+  <node  name="rslidar_node" pkg="rslidar_driver" type="rslidar_node" output="screen" >
+    <param name="model" value="RSBPEARL"/>
+    <!--param name="pcap" value="/home/tony-sti/lidar_data/lm75-170616-roadtest.pcap"/ -->
+    <param name="device_ip" value="192.168.1.53"/>
+    <param name="msop_port" value="6666"/>1
+    <param name="difop_port" value="7777"/>
+    
+
+  </node>
+    <param name="x_offset" value="0.18"/>
+    <param name="y_offset" value="2.305"/>1
+    <param name="z_offset" value="3.18"/>
+    
+    <param name="roll_offset" value="3.10"/>
+    <param name="pitch_offset" value="2.85"/>
+    <param name="yaw_offset" value="-7.15"/>
+
+    <param name="roll_dy_offset" value="0"/>
+    <param name="pitch_dy_offset" value="0"/>
+    <param name="yaw_dy_offset" value="0"/>
+	
+  <node  name="cloud_node" pkg="rslidar_pointcloud" type="cloud_node" output="screen" >
+    <param name="model" value="RSBPEARL"/>
+    <param name="angle_path" value="$(find rslidar_pointcloud)/data/lidar2/angle.csv" />
+    <param name="channel_path" value="$(find rslidar_pointcloud)/data/lidar2/ChannelNum.csv" />
+
+
+  </node>
+</group>
+</launch>

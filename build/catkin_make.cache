@@ -1,0 +1,2 @@
+lslidar_ch_128_20200608_newpub/lslidar_ch:lslidar_ch_128_20200608_newpub/lslidar_ch_decoder:lslidar_ch_128_20200608_newpub/lslidar_ch_driver:lslidar_ch_128_20200608_newpub/lslidar_ch_msgs:lslidar_ch_128_20200608_newpub/lslidar_ch_pub:ros_rslidar-algorithm/rslidar:ros_rslidar-algorithm/rslidar_driver:ros_rslidar-algorithm/rslidar_msgs:ros_rslidar-algorithm/rslidar_pointcloud:ros_rslidar-algorithm/rslidar_sync
+-DCATKIN_DEVEL_PREFIX=/home/avenue/Desktop/915_update_ws/devel -DCMAKE_INSTALL_PREFIX=/home/avenue/Desktop/915_update_ws/install -G Unix Makefiles

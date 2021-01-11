@@ -1,0 +1,8 @@
+prefix=/home/avenue/Desktop/915_update_ws/install
+
+Name: lslidar_ch_pub
+Description: Description of lslidar_ch_pub
+Version: 0.0.0
+Cflags: -I${prefix}/include -I/usr/include
+Libs: -L${prefix}/lib -llslidar_ch_pub
+Requires: roscpp rospy std_msgs pluginlib pcl_ros pcl_conversions

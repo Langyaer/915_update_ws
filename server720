@@ -1,0 +1,48 @@
+#!/bin/bash
+cd /home/sky1/work/720_ws
+
+launchrunning=$(ps -ef | grep "launch720.sh" | grep -v "grep")
+rslidar_launch=$(ps -ef | grep "roslaunch rslidar_launch two_lidar.launch" |grep -v "grep" | wc -l) 
+lslidar_launch=$(ps -ef | grep "roslaunch lslidar_ch_decoder lslidar_ch.launch" |grep -v "grep" | wc -l)
+lslidar_node=$(ps -ef | grep "lslidar_ch" |grep -v "grep" | wc -l)
+if [ $1 = "start" ]
+then
+echo "do start"
+	if [ "$launchrunning" ];then
+		kill -9 `ps -ef | grep "launch720.sh" | grep -v grep | awk '{print $2}'`
+	fi
+	
+	if [ "$rslidar_launch" ];then
+		kill -9 `ps -ef | grep "rslidar_pointcloud" | grep -v grep | awk '{print $2}'`
+	fi
+	
+	if [ "$lslidar_launch" ];then
+		kill -9 `ps -ef | grep "lslidar_ch_decoder" | grep -v grep | awk '{print $2}'`
+	fi
+	
+	if [ "$lslidar_node" ];then
+		kill -9 `ps -ef | grep "lslidar_ch" | grep -v grep | awk '{print $2}'`
+	fi
+	nohup ./launch720.sh > /dev/null 2>&1 &
+
+elif [ $1 = "stop" ]
+then
+echo "do stop"
+	if [ "$launchrunning" ];then
+		kill -9 `ps -ef | grep "launch720.sh" | grep -v grep | awk '{print $2}'`
+	fi
+	
+	if [ "$rslidar_launch" ];then
+		kill -9 `ps -ef | grep "rslidar_pointcloud" | grep -v grep | awk '{print $2}'`
+	fi
+
+	if [ "$lslidar_launch" ];then
+		kill -9 `ps -ef | grep "lslidar_ch_decoder" | grep -v grep | awk '{print $2}'`
+	fi
+	
+	if [ "$lslidar_node" ];then
+		kill -9 `ps -ef | grep "lslidar_ch" | grep -v grep | awk '{print $2}'`
+	fi
+else
+  echo "Please make sure the positon variable is start or stop."
+fi
